@@ -1,0 +1,245 @@
+/* ################################### *\
+|* Foundation 1-00                   # *|
+\* ################################### */
+
+/* ========================= *\
+|* Rows                    = *|
+\* ========================= */
+
+.row {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+
+	// HORIZONTAL CONTENT ALIGNING
+	&.content-justify-none,    .child-content-justify-none    > & { justify-content: flex-start; }
+	&.content-justify-left,    .child-content-justify-left    > & { justify-content: flex-start; }
+	&.content-justify-center,  .child-content-justify-center  > & { justify-content: center; }
+	&.content-justify-right,   .child-content-justify-right   > & { justify-content: flex-end; }
+	&.content-justify-between, .child-content-justify-between > & { justify-content: space-between; }
+	&.content-justify-around,  .child-content-justify-around  > & { justify-content: space-around; }
+	
+	// VERTICAL CONTENT ALIGNING
+	&.content-align-none,    .child-content-align-none    > & { align-content: flex-start; align-items: flex-start; }
+	&.content-align-top,     .child-content-align-top     > & { align-content: flex-start; align-items: flex-start; }
+	&.content-align-middle,  .child-content-align-middle  > & { align-content: center;     align-items: flex-start; }
+	&.content-align-bottom,  .child-content-align-bottom  > & { align-content: flex-end;   align-items: flex-end; }
+	&.content-align-between, .child-content-align-between > & { align-content: space-between; }
+	&.content-align-around,  .child-content-align-around  > & { align-content: space-around; }
+	&.content-align-stretch, .child-content-align-stretch > & { align-content: stretch; }
+	
+	// HORIZONTAL SELF ALIGNING
+	&.justify-left    { align-self: flex-start; }
+	&.justify-center  { align-self: center; }
+	&.justify-right   { align-self: flex-end; }
+	&.justify-stretch { align-self: stretch; }
+}
+
+
+
+/* ========================= *\
+|* Columns                 = *|
+\* ========================= */
+
+[class*="column"] {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	flex-wrap: wrap;
+	
+	// HORIZONTAL CONTENT ALIGNING
+	&.content-justify-none,    .child-content-justify-none    > & { align-items: flex-start; }
+	&.content-justify-left,    .child-content-justify-left    > & { align-items: flex-start; }
+	&.content-justify-center,  .child-content-justify-center  > & { align-items: center; }
+	&.content-justify-right,   .child-content-justify-right   > & { align-items: flex-end; }
+	&.content-justify-stretch, .child-content-justify-stretch > & { align-items: stretch; }
+	
+	// VERTICAL CONTENT ALIGNING
+	&.content-align-none,    .child-content-align-none    > & { justify-content: flex-start; }
+	&.content-align-top,     .child-content-align-top     > & { justify-content: flex-start; }
+	&.content-align-middle,  .child-content-align-middle  > & { justify-content: center; }
+	&.content-align-bottom,  .child-content-align-bottom  > & { justify-content: flex-end; }
+	&.content-align-between, .child-content-align-between > & { justify-content: space-between; }
+	&.content-align-around,  .child-content-align-around  > & { justify-content: space-around; }
+	
+	// VERTICAL SELF ALIGNING
+	&.align-top     { align-self: flex-start; }
+	&.align-middle  { align-self: center; }
+	&.align-bottom  { align-self: flex-end; }
+	&.align-stretch { align-self: stretch; }
+}
+
+/* COLUMN WIDTH */
+@mixin column-width ($i) { width: calc((#{$i} / 12) * 100%); }
+
+@for $i from 0 through 12 {
+   	.column-#{$i} { 
+		@include column-width($i);
+	
+		@include UNLIMITED {
+			&-ulm { @include column-width($i); }
+		}
+
+		@include LARGE {
+			&-lrg { @include column-width($i); }
+		}
+
+		@include MEDIUM {
+			&-mdm { @include column-width($i); }
+		}
+
+		@include SMALL {
+			&-sml { @include column-width($i); }
+		}
+	}
+}
+
+
+
+/* ========================= *\
+|* Width modificators      = *|
+\* ========================= */
+
+/* ******************** *\
+|* Fullwidth          * *|
+\* ******************** */
+
+@include fullwidth-percent;
+@include fullwidth-screen;
+
+
+
+/* ************************* *\
+|* Size width modificators * *|
+\* ************************* */
+
+@include width-precise;
+@include minwidth-precise;
+@include limitwidth-precise;
+
+//@include width-percent;
+//@include minwidth-percent;
+//@include limitwidth-percent;
+
+//@include width-screen;
+//@include minwidth-screen;
+//@include limitwidth-screen;
+
+
+
+/* ========================= *\
+|* Height modificators     = *|
+\* ========================= */
+
+/* ******************** *\
+|* Fullheight          * *|
+\* ******************** */
+
+//@include fullheight-percent;
+//@include fullheight-screen;
+
+
+
+/* ************************* *\
+|* Size height modificators * *|
+\* ************************* */
+
+//@include height-precise;
+//@include minheight-precise;
+//@include limitheight-precise;
+
+//@include height-percent;
+//@include minheight-percent;
+//@include limitheight-percent;
+
+//@include height-screen;
+//@include minheight-screen;
+//@include limitheight-screen;
+
+
+
+/* ========================= *\
+|* Fixed elements          = *|
+\* ========================= */
+
+@mixin fixed ($side) {
+	.fixed-#{$side} {
+		position: fixed;
+		#{$side}: 0;
+	}
+}
+
+@each $side in $sides {
+	@include fixed($side);
+}
+
+.fixed-header {
+	
+}
+
+
+
+/* ========================= *\
+|* Other                   = *|
+\* ========================= */
+
+.attached-footer {
+	&.row { align-content: space-between; }
+	&[class*="column"] { justify-content: space-between; }
+	
+	&.row, &[class*="column"] {
+		min-height: 100vh;
+		
+		& > .main-content { flex-grow: 1; }
+		& > * { flex-grow: 0; }
+	}
+	/* 
+	
+	HTML-code example
+
+	
+	
+	// With column (preferable)
+	
+	<div class="column attached-footer">
+		<div class="row"></div>
+		<div class="row main-content"></div>
+		<div class="row"></div>
+	</div>
+
+	
+	
+	// With row
+	
+	<div class="row attached-footer">
+		<div class="row">
+			<div class="row"></div>
+			<div class="row main-content"></div>
+		</div>
+		<div class="row"></div>
+	</div>
+
+	*/
+}
+
+
+
+@include UNLIMITED {
+	
+}
+
+@include LARGE {
+	
+}
+
+@include MEDIUM {
+	
+}
+
+@include SMALL {
+	
+}

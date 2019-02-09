@@ -1,0 +1,45 @@
+// =========================
+// Standart mixins         =
+// =========================
+
+// ********************
+// Import             *
+// ********************
+
+@import "_vendor-prefixes.scss";
+@import "_width-versions.scss";
+@import "_width-modificators.scss";
+@import "_height-modificators.scss";
+
+
+
+// ********************
+// Mixins             *
+// ********************
+
+@mixin modificator ($selector-name, $property-name, $property-modificator, $property-value, $width-version) {	
+	$property-modificator:  -#{$property-modificator};
+	$property-value-string: - RemoveUnit($property-value);
+	$width-version: if($width-version != null, -#{$width-version}, null);
+	
+	.#{$selector-name}#{$property-modificator}#{$property-value-string}#{$width-version},
+	.content-#{$selector-name}#{$property-modificator}#{$property-value-string}#{$width-version} > *,
+	.child-content-#{$selector-name}#{$property-modificator}#{$property-value-string}#{$width-version} > * > * {
+		#{$property-name}: $property-value;
+	}
+}
+
+@mixin selector-width-template ($selector) {
+	.#{$selector} {
+		@include ALL-VERSIONS {         @content; }
+		@include UNLIMITED    { &-ulm { @content; } }
+		@include LARGE        { &-lrg { @content; } }
+		@include MEDIUM       { &-mdm { @content; } }
+		@include SMALL        { &-sml { @content; } }
+	}
+}
+
+@mixin std-wrapper ($wrapper-width: 100%) {
+	width: $wrapper-width;
+	height: 100%;
+}

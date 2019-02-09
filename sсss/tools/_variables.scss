@@ -1,0 +1,44 @@
+// ###################################
+// Global variables                  #
+// ###################################
+
+// =========================
+// Project paths           =
+// =========================
+
+$project-name: "GlobalTemp";
+
+$macosx-path: "/Users/Ostap/Documents/Google Drive/" + $project-name + "/";
+$windows-path: "file:///H:/Users/Ostap Bender/Documents/Google Drive (Ostap)/" + $project-name + "/";
+
+$file-path: $windows-path;
+
+
+
+// =========================
+// Site sizes variables    =
+// =========================
+
+$site-width-lrg: 1200px; // Max width of large site version
+$site-width-mdm: 800px;  // Max width of medium site version
+$site-width-sml: 400px;  // Max width of small site version
+
+$site-width-min-ulm: $site-width-lrg + 1; // Min width of unlimited site version
+$site-width-max-lrg: $site-width-lrg;     // Max width of large site version
+$site-width-min-lrg: $site-width-mdm + 1; // Min width of large site version
+$site-width-max-mdm: $site-width-mdm;     // Max width of medium site version
+$site-width-min-mdm: $site-width-sml + 1; // Min width of medium site version
+$site-width-max-sml: $site-width-sml;     // Max width of small site version
+
+$site-width-max: $site-width-lrg; // Max content's width
+
+
+
+// =========================
+// Other                   =
+// =========================
+
+$sides: ("top", "right", "bottom", "left");
+$vendor-prefixes: ("-webkit-", "-moz-", "-ms-", "-o-", "");
+$sizes-postfixes: ("ulm", "lrg", "mdm", "sml");
+$sizes-postfixes-dictionary: (ALL-VERSIONS: null, UNLIMITED: ulm, LARGE: lrg, MEDIUM: mdm, SMALL: sml);

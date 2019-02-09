@@ -1,0 +1,23 @@
+/* ~~~~~~~~~~~~~~~~~~ *\
+|* Registration box ~ *|
+\* ~~~~~~~~~~~~~~~~~~ */
+
+/* COMMON */
+
+// Code
+
+
+
+
+
+
+/* LARGE */
+	
+	.registration {
+		@include std-wrapper;
+		
+		.registration-container {
+			//@include std-container
+		}
+	}
+	

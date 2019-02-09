@@ -1,0 +1,48 @@
+// =========================
+// Standart mixins         =
+// =========================
+
+// ********************
+// Import             *
+// ********************
+
+@import "_vendor-prefixes.scss";
+@import "_width-versions.scss";
+@import "_width-modificators.scss";
+@import "_height-modificators.scss";
+
+
+
+// ********************
+// Mixins             *
+// ********************
+
+// Create selector contain:
+// {Scope modificator}-{Selector name}-{Property units}-{Property value}-[{Width versions}]
+
+@mixin composite-selector ($selector-name, $property-name, $property-unit, $property-value, $width-version) {	
+	$property-unit:  -#{$property-unit};
+	$property-value-string: - RemoveUnit($property-value);
+	$width-version: if($width-version != null, -#{$width-version}, null);
+	
+	.#{$selector-name}#{$property-unit}#{$property-value-string}#{$width-version},
+	.content-#{$selector-name}#{$property-unit}#{$property-value-string}#{$width-version} > *,
+	.child-content-#{$selector-name}#{$property-unit}#{$property-value-string}#{$width-version} > * > * {
+		#{$property-name}: $property-value;
+	}
+}
+
+@mixin selector-width-template ($selector) {
+	.#{$selector} {
+		@include ALL-VERSIONS {         @content; }
+		@include UNLIMITED    { &-ulm { @content; } }
+		@include LARGE        { &-lrg { @content; } }
+		@include MEDIUM       { &-mdm { @content; } }
+		@include SMALL        { &-sml { @content; } }
+	}
+}
+
+@mixin std-wrapper ($wrapper-width: 100%) {
+	width: $wrapper-width;
+	height: 100%;
+}

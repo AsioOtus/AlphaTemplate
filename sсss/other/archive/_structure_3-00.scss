@@ -1,0 +1,233 @@
+$site-width-lrg: 1200px; // Max width of wide site version
+$site-width-mdm: 800px;  // Max width of medium site version
+$site-width-sml: 400px;  // Max width of narrow site version
+
+$site-width-min-ful: $site-width-lrg + 1; // Min width of fullwidth site version
+$site-width-max-lrg: $site-width-lrg;     // Max width of wide site version
+$site-width-min-lrg: $site-width-mdm + 1; // Min width of wide site version
+$site-width-max-mdm: $site-width-mdm;     // Max width of medium site version
+$site-width-min-mdm: $site-width-sml + 1; // Min width of medium site version
+$site-width-max-sml: $site-width-sml;     // Max width of narrow site version
+
+$site-width-max: $site-width-lrg; // Max content's width
+
+
+
+/* #################### *\
+|* MAIN STRUCTURE     # *| 
+\* #################### */
+
+/* ~~~~~~~~~~~~~~~~~~~ *\
+|* Rows              ~ *|
+\* ~~~~~~~~~~~~~~~~~~~ */
+
+.row {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+
+	// HORIZONTAL CONTENT ALIGNING
+	&.content-justify-none,    .child-content-justify-none    > & { justify-content: flex-start; }
+	&.content-justify-left,    .child-content-justify-left    > & { justify-content: flex-start; }
+	&.content-justify-center,  .child-content-justify-center  > & { justify-content: center; }
+	&.content-justify-right,   .child-content-justify-right   > & { justify-content: flex-end; }
+	&.content-justify-between, .child-content-justify-between > & { justify-content: space-between; } // Придумать названире получше
+	&.content-justify-regular, .child-content-justify-regular > & { justify-content: space-around; }
+	
+	// VERTICAL CONTENT ALIGNING
+	&.content-align-none,    .child-content-align-none    > & { align-content: flex-start; align-items: flex-start; }
+	&.content-align-top,     .child-content-align-top     > & { align-content: flex-start; align-items: flex-start; }
+	&.content-align-middle,  .child-content-align-middle  > & { align-content: center;     align-items: flex-start; }
+	&.content-align-bottom,  .child-content-align-bottom  > & { align-content: flex-end;   align-items: flex-end; }
+	&.content-align-between, .child-content-align-between > & { align-content: space-between; } // Придумать названире получше
+	&.content-align-regular, .child-content-align-regular > & { align-content: space-around; }
+	&.content-align-stretch, .child-content-align-stretch > & { align-content: stretch; }
+	
+	// HORIZONTAL SELF ALIGNING
+	&.justify-left    { align-self: flex-start; }
+	&.justify-center  { align-self: center; }
+	&.justify-right   { align-self: flex-end; }
+	&.justify-stretch { align-self: stretch; }
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~ *\
+|* Columns           ~ *|
+\* ~~~~~~~~~~~~~~~~~~~ */
+
+[class*="column"] {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	flex-wrap: wrap;
+	
+	/* HORIZONTAL CONTENT ALIGNING */
+	&.content-justify-none,    .child-content-justify-none    > & { align-items: flex-start; }
+	&.content-justify-left,    .child-content-justify-left    > & { align-items: flex-start; }
+	&.content-justify-center,  .child-content-justify-center  > & { align-items: center; }
+	&.content-justify-right,   .child-content-justify-right   > & { align-items: flex-end; }
+	&.content-justify-stretch, .child-content-justify-stretch > & { align-items: stretch; }
+	
+	/* VERTICAL CONTENT ALIGNING */
+	&.content-align-none,    .child-content-align-none    > & { justify-content: flex-start; }
+	&.content-align-top,     .child-content-align-top     > & { justify-content: flex-start; }
+	&.content-align-middle,  .child-content-align-middle  > & { justify-content: center; }
+	&.content-align-bottom,  .child-content-align-bottom  > & { justify-content: flex-end; }
+	&.content-align-between, .child-content-align-between > & { justify-content: space-between; } // Придумать названире получше
+	&.content-align-regular, .child-content-align-regular > & { justify-content: space-around; }
+	
+	/* VERTICAL SELF ALIGNING */
+	&.align-top     { align-self: flex-start; }
+	&.align-middle  { align-self: center; }
+	&.align-bottom  { align-self: flex-end; }
+	&.align-stretch { align-self: stretch; }
+}
+
+@for $i from 0 through 12 {
+   	.column-#{$i} { width: calc((#{$i} / 12) * 100%); }
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~ *\
+|* Width moficators  ~ *|
+\* ~~~~~~~~~~~~~~~~~~~ */
+
+.fullwidth { width: 100% !important; max-width: none !important; }
+.fullwidth-screen { width: 100vw !important; max-width: none !important; }
+
+.definedwidth, .content-definedwidth > *, .child-content-definedwidth > * > * { width: $site-width-max-lrg; }
+
+.limitwidth, .content-limitwidth > *, .child-content-limitwidth > * > * { max-width: $site-width-max-lrg; }
+@for $i from 1 through $site-width-max / 100px {
+	$maxwidth-value: $i * 100;
+	
+	.limitwidth-#{$maxwidth-value},
+	.content-limitwidth-#{$maxwidth-value} > *,
+	.child-content-limitwidth-#{$maxwidth-value} > * > * 
+		{ max-width: $maxwidth-value * 1px; }
+}
+
+.width, .content-width > *, .child-content-width > * > * { width: 100% !important; }
+@for $i from 1 through 20 {
+	$width-value: $i * 5;
+	
+	.width-#{$width-value},
+	.content-width-#{$width-value} > *,
+	.child-content-width-#{$width-value} > * > * 
+		{ width: $width-value * 1% !important; }
+}
+
+.minwidth, .content-minwidth > *, .child-content-minwidth > * > * { min-width: 100% !important; }
+@for $i from 1 through 20 {
+	$minwidth-value: $i * 5;
+	
+	.minwidth-#{$minwidth-value},
+	.content-minwidth-#{$minwidth-value} > *,
+	.child-content-minwidth-#{$minwidth-value} > * > * 
+		{ min-width: $minwidth-value * 1% !important; }
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~ *\
+|* Height moficators ~ *|
+\* ~~~~~~~~~~~~~~~~~~~ */
+
+.fullheight-parent { height: 100% !important;  max-height: none !important; }
+.fullheight-screen { height: 100vh !important; max-height: none !important; }
+
+.minheight-screen, .content-minheight-screen > *, child-content-minheight-screen > * > * { min-height: 100vh !important; }
+@for $i from 1 through 20 {
+	$minheight-value: $i * 5;
+	
+	.minheight-#{$minheight-value}-screen,
+	.content-minheight-#{$minheight-value}-screen > *,
+	.child-content-minheight-#{$minheight-value}-screen > * > * 
+		{ min-height: $minheight-value * 1vh !important; }
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~ *\
+|* Fixed elements    ~ *|
+\* ~~~~~~~~~~~~~~~~~~~ */
+
+@mixin fixed ($side) {
+	.fixed-#{$side} {
+		position: fixed;
+		#{$side}: 0;
+	}
+}
+
+@include fixed(top);
+@include fixed(right);
+@include fixed(bottom);
+@include fixed(left);
+
+.fixed-header {
+	
+}
+
+
+
+/* ~~~~~~~~~~ *\
+|* Other    ~ *|
+\* ~~~~~~~~~~ */
+
+.attached-footer {
+	&.row { align-content: space-between; }
+	&[class*="column"] { justify-content: space-between; }
+	
+	&.row, &[class*="column"] {
+		min-height: 100vh;
+		
+		& > .main-content { flex-grow: 1; }
+		& > * { flex-grow: 0; }
+	}
+}
+
+
+
+///* ~~~~~~~~~~~ *\
+//|* Fullwidth ~ *|
+//\* ~~~~~~~~~~~ */
+//
+//@media screen and (min-width: $content-width-min-ful) {
+//
+//}
+//
+//
+//
+///* ~~~~~~~~~~ *\
+//|* Wide     ~ *|
+//\* ~~~~~~~~~~ */
+//
+//@media screen and (min-width: $content-width-min-lrg) {
+//
+//}
+//
+//
+//
+///* ~~~~~~~~~~ *\
+//|* Medium   ~ *|
+//\* ~~~~~~~~~~ */
+//
+//@media screen and (min-width: $content-width-min-mdm) and (max-width: $content-width-max-lrg){
+//
+//}
+//
+//
+//
+///* ~~~~~~~~~~ *\
+//|* Narrow   ~ *|
+//\* ~~~~~~~~~~ */
+//
+//@media screen and (max-width: $content-width-max-sml){
+//
+//}

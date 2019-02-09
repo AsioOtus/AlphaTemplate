@@ -1,0 +1,81 @@
+$site-width-lrg: 1200px; // Max width of large site version
+$site-width-mdm: 800px;  // Max width of medium site version
+$site-width-sml: 400px;  // Max width of small site version
+
+$site-width-min-ulm: $site-width-lrg + 1; // Min width of unlimited site version
+$site-width-max-lrg: $site-width-lrg;     // Max width of large site version
+$site-width-min-lrg: $site-width-mdm + 1; // Min width of large site version
+$site-width-max-mdm: $site-width-mdm;     // Max width of medium site version
+$site-width-min-mdm: $site-width-sml + 1; // Min width of medium site version
+$site-width-max-sml: $site-width-sml;     // Max width of small site version
+
+$site-width-max: $site-width-lrg; // Max content's width
+
+
+@mixin ALL-VERSIONS {
+	@content;
+}
+
+// UNLIMITED
+@mixin UNLIMITED {
+	@media (min-width: $site-width-min-ulm) {
+		@content;
+	}
+}
+
+// LARGE
+@mixin LARGE {
+	@media (min-width: $site-width-min-lrg) and (max-width: $site-width-max-lrg) {
+		@content;
+	}
+}
+
+// MEDIUM
+@mixin MEDIUM {
+	@media (min-width: $site-width-min-mdm) and (max-width: $site-width-max-mdm) {
+		@content;
+	}
+}
+
+// SMALL
+@mixin SMALL {
+	@media (max-width: $site-width-max-sml) {
+		@content;
+	}
+}
+
+@function RemoveUnit ($value) {	
+	$unit: unit($value);
+	
+	@if $unit != null {
+		$value: inspect($value);
+		$value: str-slice($value, 1, str-length($value) - str-length($unit));
+	}
+	
+	@return $value;
+}
+
+@mixin modificator ($selector-name, $property-name, $property-unit, $property-value, $width-version) {	
+	$property-unit:  -#{$property-unit};
+	$property-value-string: - RemoveUnit($property-value);
+	$width-version: if($width-version != null, -#{$width-version}, null);
+	
+	.#{$selector-name}#{$property-unit}#{$property-value-string}#{$width-version},
+	.content-#{$selector-name}#{$property-unit}#{$property-value-string}#{$width-version} > *,
+	.child-content-#{$selector-name}#{$property-unit}#{$property-value-string}#{$width-version} > * > * {
+		#{$property-name}: $property-value;
+	}
+}
+
+@include modificator (SeleName, PropName, PropUnit, 100, WidtVers);
+
+
+
+
+
+
+
+
+
+
+

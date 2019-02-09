@@ -1,0 +1,253 @@
+/* ################################### *\
+|* Theme                             # *|
+\* ################################### */
+
+
+// =========================
+// Color scheme            =
+// =========================
+
+@import "layout/single-color-schemes/_light-red-scheme.scss";
+
+
+
+// =========================
+// Variables               =
+// =========================
+
+$std-margin-ulm: 25px;
+$std-margin-lrg: 20px;
+$std-margin-mdm: 15px;
+$std-margin-sml: 10px;
+
+$std-semimargin-ulm: $std-margin-ulm / 2;
+$std-semimargin-lrg: $std-margin-lrg / 2;
+$std-semimargin-mdm: $std-margin-mdm / 2;
+$std-semimargin-sml: $std-margin-sml / 2;
+
+
+
+/* ========================= *\
+|* Fonts                   = *|
+\* ========================= */
+
+@font-face {
+	font-family: PragmaticeLightC;
+	src: url($file-path + "fonts/PragmaticaLightC.otf");
+}
+
+@font-face {
+	font-family: loop-search;
+	src: url($file-path + "fonts/loop-search.ttf");
+}
+
+$site-font-name: PragmaticeLightC;
+
+
+
+// =========================
+// Content-table mixins    =
+// =========================
+
+@mixin margin-shift-left ($margin) {
+	margin-right: 0;
+	margin-left:  $margin;
+}
+@mixin margin-shift-both ($margin) {
+	margin-right: $margin;
+	margin-left:  $margin;
+}
+@mixin margin-shift-right ($margin) {
+	margin-right: $margin;
+	margin-left:  0;
+}
+@mixin first-last-column ($margin) {
+	& > [class*="column"] {
+			&:first-of-type, &.first { margin-left:  $margin; }
+			&:last-of-type,  &.last  { margin-right: $margin; }
+		}
+}
+
+
+@mixin content-table ($margin) {
+	$semimargin: $margin / 2;
+	
+	/* --------------- *\
+	|* Margin bottom - *|
+	\* --------------- */
+	.content-table-unmargined.row,
+	.content-table-semimargined.row,
+	.content-table-margined.row,
+	.child-content-table-unmargined > .row,
+	.child-content-table-semimargined > .row,
+	.child-content-table-margined > .row {
+		& > [class*="column"] {
+			margin-bottom: $margin;
+		}
+		&.last { margin-bottom: -$margin; }
+	}
+	
+	/* ----------------- *\
+	|* Margins between - *|
+	\* ----------------- */
+	.content-table-unmargined.row,
+	.content-table-margined.row,
+	.child-content-table-unmargined > .row,
+	.child-content-table-margined > .row {
+		& > [class*="column"] {
+			@include margin-shift-left($margin);
+		}
+	}
+	
+	.content-table-semimargined.row,
+	.child-content-table-semimargined > .row {
+		& > [class*="column"] {
+			@include margin-shift-both($semimargin);
+		}
+	}
+	
+	/* ------------------------------- *\
+	|* Margins between with aligning - *|
+	\* ------------------------------- */
+	.content-justify-center,
+	.content-justify-right {
+		&.content-table-unmargined.row,
+		&.content-table-margined.row {
+			& > [class*="column"] {
+				@include margin-shift-right($margin);
+			}
+		}
+	}
+	.child-content-justify-center,
+	.child-content-justify-right {
+		&.child-content-table-unmargined > .row,
+		&.child-content-table-margined > .row {
+			& > [class*="column"] {
+				@include margin-shift-right($margin);
+			}
+		}
+	}
+
+	.content-justify-between,
+	.content-justify-regular {
+		&.content-table-unmargined.row,
+		&.content-table-margined.row {
+			& > [class*="column"] {
+				@include margin-shift-both($semimargin);
+			}
+		}
+	}
+	.child-content-justify-between,
+	.child-content-justify-regular {
+		&.child-content-table-unmargined > .row,
+		&.child-content-table-margined > .row {
+			& > [class*="column"] {
+				@include margin-shift-both($semimargin);
+			}
+		}
+	}
+
+	/* --------------------------- *\
+	|* Width and special margins - *|
+	\* --------------------------- */
+	.row.content-table-unmargined,
+	.child-content-table-unmargined > .row,
+	.child-content-table-semimargined > .row.content-table-unmargined,
+	.child-content-table-margined > .row.content-table-unmargined {
+		@include first-last-column(0);
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% + #{$margin}) - #{$margin});
+			}
+		}
+	}
+
+	.row.content-table-semimargined,
+	.child-content-table-semimargined > .row,
+	.child-content-table-unmargined > .row.content-table-semimargined,
+	.child-content-table-margined > .row.content-table-semimargined {
+		@include first-last-column($semimargin);
+		
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * 100% - #{$margin});				
+			}
+		}
+	}
+	
+	.row.content-table-margined,
+	.child-content-table-margined > .row,
+	.child-content-table-unmargined > .row.content-table-margined,
+	.child-content-table-semimargined > .row.content-table-margined {
+		@include first-last-column($margin);
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% - #{$margin}) - #{$margin});				
+			}
+		}
+	}
+}
+
+
+
+/* ========================= *\
+|* Width versions          = *|
+\* ========================= */
+
+@include UNLIMITED {
+	@include content-table ($std-margin-ulm);
+}
+
+
+
+@include LARGE {
+	@include content-table ($std-margin-lrg);
+}
+
+
+
+@include MEDIUM {
+	@include content-table ($std-margin-mdm);
+}
+
+
+
+@include SMALL {
+	@include content-table ($std-margin-sml);
+}
+
+
+
+/* ========================= *\
+|* Other                   = *|
+\* ========================= */
+
+body {
+	background-color: $color-background-basic;
+	font-family: $site-font-name;
+	font-size: 13px;
+	color: $color-text-basic;
+}
+
+a {
+	color: $color-text-basic;
+	text-decoration: none;
+	outline: none;
+}
+
+.background-color-none {
+	height: auto;
+	background-color: transparent !important;
+}
+
+.text-color-first {
+	color: $color-first-basic;
+}
+
+.container {
+	width: 100%;
+	min-height: 15px;
+	background-color: $color-second-basic;
+}

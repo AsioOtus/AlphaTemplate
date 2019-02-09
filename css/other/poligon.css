@@ -1,0 +1,5 @@
+.SeleName-PropUnit-100-WidtVers,
+.content-SeleName-PropUnit-100-WidtVers > *,
+.child-content-SeleName-PropUnit-100-WidtVers > * > * {
+  PropName: 100;
+}

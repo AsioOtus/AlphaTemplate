@@ -1,0 +1,94 @@
+// *********************
+// Height modificators *
+// *********************
+
+// ~~~~~~~~~~~~~~~
+// Fullheight    ~
+// ~~~~~~~~~~~~~~~
+
+@mixin fullheight-percent {
+	@include selector-width-template(fullheight-percent) {
+		min-height: 100% !important;
+		max-height: none !important; 
+	}
+}
+
+@mixin fullheight-screen {
+	@include selector-width-template(fullheight-screen) {
+		min-height: 100vh !important;
+		max-height: none !important; 
+	}
+}
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Size height modificators ~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Add property values and units
+
+@mixin height-precise-modificator-template ($selector-name, $property-name, $width-version) {
+	@for $i from 0 through 20 {
+		$property-value: $i * 50px;
+		@include composite-selector($selector-name, $property-name, precise, $property-value, $width-version);
+	}
+}
+
+@mixin height-percent-modificator-template ($selector-name, $property-name, $width-version) {
+	@for $i from 0 through 20 {
+		$property-value: $i * 5%;
+		@include composite-selector($selector-name, $property-name, percent, $property-value, $width-version);
+	}
+}
+
+@mixin height-screen-modificator-template ($selector-name, $property-name, $width-version) {
+	@for $i from 0 through 20 {
+		$property-value: $i * 5vh;
+		@include composite-selector($selector-name, $property-name, screen, $property-value, $width-version);
+	}
+}
+
+
+
+// Add width modificators
+
+@mixin height-precise-versions-template ($selector-name, $property-name) {
+	@include ALL-VERSIONS { @include height-precise-modificator-template($selector-name, $property-name, null); }
+	@include UNLIMITED    { @include height-precise-modificator-template($selector-name, $property-name, ulm); }
+	@include LARGE        { @include height-precise-modificator-template($selector-name, $property-name, lrg); }
+	@include MEDIUM       { @include height-precise-modificator-template($selector-name, $property-name, mdm); }
+	@include SMALL        { @include height-precise-modificator-template($selector-name, $property-name, sml); }
+}
+
+@mixin height-percent-versions-template ($selector-name, $property-name) {
+	@include ALL-VERSIONS { @include height-percent-modificator-template($selector-name, $property-name, null); }
+	@include UNLIMITED    { @include height-percent-modificator-template($selector-name, $property-name, ulm); }
+	@include LARGE        { @include height-percent-modificator-template($selector-name, $property-name, lrg); }
+	@include MEDIUM       { @include height-percent-modificator-template($selector-name, $property-name, mdm); }
+	@include SMALL        { @include height-percent-modificator-template($selector-name, $property-name, sml); }
+}
+
+@mixin height-screen-versions-template ($selector-name, $property-name) {
+	@include ALL-VERSIONS { @include height-screen-modificator-template($selector-name, $property-name, null); }
+	@include UNLIMITED    { @include height-screen-modificator-template($selector-name, $property-name, ulm); }
+	@include LARGE        { @include height-screen-modificator-template($selector-name, $property-name, lrg); }
+	@include MEDIUM       { @include height-screen-modificator-template($selector-name, $property-name, mdm); }
+	@include SMALL        { @include height-screen-modificator-template($selector-name, $property-name, sml); }
+}
+
+
+
+// Add selector name and property name
+
+@mixin height-precise      { @include height-precise-versions-template(height, height); }
+@mixin minheight-precise   { @include height-precise-versions-template(minheight, min-height); }
+@mixin limitheight-precise { @include height-precise-versions-template(limitheight, max-height); }
+
+@mixin height-percent      { @include height-percent-versions-template(height, height); }
+@mixin minheight-percent   { @include height-percent-versions-template(minheight, min-height); }
+@mixin limitheight-percent { @include height-percent-versions-template(limitheight, max-height); }
+
+@mixin height-screen      { @include height-screen-versions-template(height, height); }
+@mixin minheight-screen   { @include height-screen-versions-template(minheight, min-height); }
+@mixin limitheight-screen { @include height-screen-versions-template(limitheight, max-height); }

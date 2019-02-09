@@ -1,0 +1,73 @@
+// ********************
+// Width versions     *
+// ********************
+
+// TEMPLATE
+@mixin media-width ($width-min, $width-max) {
+	@media (min-width: $width-min) and (max-width: $width-max) { @content; }
+}
+
+
+
+// ALL VERSIONS
+@mixin ALL-VERSIONS {
+	@content;
+}
+
+
+
+// UNLIMITED
+@mixin UNLIMITED {
+	@media (min-width: $site-width-min-ulm) { @content; }
+}
+
+// LARGE
+@mixin LARGE {
+	@media (min-width: $site-width-min-lrg) and (max-width: $site-width-max-lrg) { @content; }
+}
+
+// MEDIUM
+@mixin MEDIUM {
+	@media (min-width: $site-width-min-mdm) and (max-width: $site-width-max-mdm) { @content; }
+}
+
+// SMALL
+@mixin SMALL {
+	@media (max-width: $site-width-max-sml) { @content; }
+}
+
+
+
+// UNLIMITED AND LARGE
+@mixin UNLIMITED-LARGE {
+	@media (min-width: $site-width-min-lrg) { @content; }
+}
+
+// UNLIMITED, LARGE AND MEDIUM
+@mixin UNLIMITED-MEDIUM {
+	@media (min-width: $site-width-min-mdm) { @content; }
+}
+
+// UNLIMITED, LARGE, MEDIUM AND SMALL
+@mixin UNLIMITED-SMALL {
+	@media (min-width: $site-width-min-sml) { @content; }
+}
+
+
+
+// LARGE AND MEDIUM
+@mixin LARGE-MEDIUM {
+	@media (min-width: $site-width-min-mdm) and (max-width: $site-width-max-lrg) { @content; }
+}
+
+// LARGE, MEDIUM AND SMALL
+@mixin LARGE-SMALL {
+	@media (max-width: $site-width-max-lrg) { @content; }
+}
+
+
+
+// MEDIUM AND SMALL
+@mixin MEDIUM-SMALL {
+	@media (max-width: $site-width-max-mdm) { @content; }
+}

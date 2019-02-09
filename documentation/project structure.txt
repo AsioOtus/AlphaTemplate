@@ -1,0 +1,71 @@
+style.css
+	style.scss
+		tools:
+			_reset.scss
+			_variables.scss @
+			functions:
+				_functions.scss &
+					single-functions:
+						_single-functions.scss &
+							_functions.scss *
+					functions-set: *
+						_functions-set.scss &
+							_functions.scss *
+			mixins:
+h1				_mixins.scss &
+					single-mixins:
+h2						_single-mixins.scss &
+							_mixins.scss *
+					mixins-set: *
+						_mixins-set.scss &
+							_mixins.scss *
+			//templates:
+				_templates.scss &
+					single-templates:
+h2						_single-templates.scss &
+							_templates.scss *
+					_templates-set: *
+						_templates-set.scss &
+							_templates.scss *
+			_extra.scss
+h1		_foundation.scss
+		layout:
+h1			_theme.scss
+				// _fonts.scss
+				//_custom-theme.scss
+				single-color-schemes:
+h3					_color-scheme.scss *
+				color-schemes-set: * @
+h3					_color-scheme.scss *
+		components:
+			_components.scss &
+				single-components:
+					_single-components.scss &
+						_component.scss *
+				components-set: *
+					_components-set.scss &
+						_component.scss *
+		modules:
+			_modules.scss &
+				single-modules:
+					_single-modules.scss &
+						_module.scss *
+				modules-set: *
+					_modules-set.scss &
+						_module.scss *
+						components-set:
+							_components-set.scss &
+								_component.scss *
+		examples:
+			_example.scss *
+			_examples.scss * &
+				_example.scss *
+		
+		
+
+
+
+* - несколько экземпляров
+& - экземпляр-соединитель (необходим только для соединения нескольких других файлов в один)
+@ - файл не порождающий собственного css кода
+		

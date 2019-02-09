@@ -1,0 +1,98 @@
+// ********************
+// Width modificators *
+// ********************
+
+// ~~~~~~~~~~~~~~~
+// Fullwidth    ~
+// ~~~~~~~~~~~~~~~
+
+@mixin fullwidth-percent {
+	@include selector-width-template(fullheight-percent) {
+		width: 100% !important;
+		max-width: none !important; 
+	}
+}
+
+@mixin fullwidth-screen {
+	@include selector-width-template(fullheight-screen) {
+		width: 100vw !important;
+		max-width: none !important; 
+	}
+}
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~
+// Size width modificators ~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Add property values and units
+
+$width-base: $site-width-max;
+
+@mixin width-precise-modificator-template ($selector-name, $property-name, $width-version) {
+	@for $i from 0 through ($width-base / 100px * 2) {
+		$property-value: $i * 100px;
+		@include composite-selector($selector-name, $property-name, precise, $property-value, $width-version);
+	}
+}
+
+@mixin width-percent-modificator-template ($selector-name, $property-name, $width-version) {
+	@for $i from 0 through 20 {
+		$property-value: $i * 5%;
+		@include composite-selector($selector-name, $property-name, percent, $property-value, $width-version);
+	}
+}
+
+@mixin width-screen-modificator-template ($selector-name, $property-name, $width-version) {
+	@for $i from 0 through 20 {
+		$property-value: $i * 5vw;
+		@include composite-selector($selector-name, $property-name, screen, $property-value, $width-version);
+	}
+}
+
+
+
+// Add width modificators
+
+@mixin width-precise-versions-template ($selector-name, $property-name) {
+	@include ALL-VERSIONS { @include width-precise-modificator-template($selector-name, $property-name, null); }	
+	@include UNLIMITED    { @include width-precise-modificator-template($selector-name, $property-name, ulm); }
+	@include LARGE        { @include width-precise-modificator-template($selector-name, $property-name, lrg); }
+	@include MEDIUM       { @include width-precise-modificator-template($selector-name, $property-name, mdm); }
+	@include SMALL        { @include width-precise-modificator-template($selector-name, $property-name, sml); }
+}
+
+@mixin width-percent-versions-template ($selector-name, $property-name) {
+	@include ALL-VERSIONS { @include width-percent-modificator-template($selector-name, $property-name, null); }
+	@include UNLIMITED    { @include width-percent-modificator-template($selector-name, $property-name, ulm); }
+	@include LARGE        { @include width-percent-modificator-template($selector-name, $property-name, lrg); }
+	@include MEDIUM       { @include width-percent-modificator-template($selector-name, $property-name, mdm); }
+	@include SMALL        { @include width-percent-modificator-template($selector-name, $property-name, sml); }
+}
+
+@mixin width-screen-versions-template ($selector-name, $property-name) {
+	@include ALL-VERSIONS { @include width-screen-modificator-template($selector-name, $property-name, null); }
+	@include UNLIMITED    { @include width-screen-modificator-template($selector-name, $property-name, ulm); }
+	@include LARGE        { @include width-screen-modificator-template($selector-name, $property-name, lrg); }
+	@include MEDIUM       { @include width-screen-modificator-template($selector-name, $property-name, mdm); }
+	@include SMALL        { @include width-screen-modificator-template($selector-name, $property-name, sml); }
+}
+
+
+
+// Add selector name and property name
+
+@mixin width-precise      { @include width-precise-versions-template(width, width); }
+@mixin minwidth-precise   { @include width-precise-versions-template(minwidth, min-width); }
+@mixin limitwidth-precise {	@include width-precise-versions-template(limitwidth, max-width); }
+
+@mixin width-percent      { @include width-percent-versions-template(width, width); }
+@mixin minwidth-percent   { @include width-percent-versions-template(minwidth, min-width); }
+@mixin limitwidth-percent { @include width-percent-versions-template(limitwidth, max-width); }
+
+@mixin width-screen      { @include width-screen-versions-template(width, width); }
+@mixin minwidth-screen   { @include width-screen-versions-template(minwidth, min-width); }
+@mixin limitwidth-screen { @include width-screen-versions-template(limitwidth, max-width); }
+
+

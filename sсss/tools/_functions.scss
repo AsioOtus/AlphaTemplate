@@ -1,0 +1,47 @@
+// ####################
+// COMMON FUNCTIONS   #
+// ####################
+
+// Проверка набора цветов на наличие значения цвета и замена на основной, в случае отсутствия значения
+@function IsColorValueExist($colors-map) {
+	@each $color in map-keys($colors-map) {
+		@if map-get($colors-map, $color) == 0 {
+			$colors-map-new: ($color: map-get($colors-map, basic));
+			@return map-merge(map-remove($colors-map, $color), $colors-map-new);
+		}
+	}
+	@return $colors-map;
+}
+
+// Создает строку значений для свойства transition
+@function CreateValueStringForTransition ($value, $properties) {
+	$string: null;
+	
+	@each $property in $properties {
+		$string: $string $property $value;
+		$string: $string + ",";
+	}
+	
+	$string: unquote($string);
+	$string: RemoveLastSymbols($string, 1);
+	
+	@return $string;
+}
+
+@function RemoveLastSymbols ($string, $symbols-count) {
+	$string: inspect($string);
+	$string: str-slice($string, 1, str-length($string) - $symbols-count);
+	
+	@return $string;
+}
+
+@function RemoveUnit ($value) {	
+	$unit: unit($value);
+	
+	@if $unit != null {
+		$value: inspect($value);
+		$value: str-slice($value, 1, str-length($value) - str-length($unit));
+	}
+	
+	@return $value;
+}

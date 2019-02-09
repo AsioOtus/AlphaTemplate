@@ -1,0 +1,15 @@
+// ********************
+// Vendor prefixes    *
+// ********************
+
+@mixin transition ($value, $properties...) {
+	@each $prefix in $vendor-prefixes {
+		#{$prefix}transition: CreateValueStringForTransition($value, $properties);
+	}
+}
+
+@mixin transform  ($value...) {
+	@each $prefix in $vendor-prefixes {
+		#{$prefix}transform:  $value;
+	}
+}

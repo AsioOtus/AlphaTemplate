@@ -1,0 +1,136 @@
+// ************************
+// Light red color-scheme *
+// ************************
+
+// ~~~~~~~~~~~~~~~
+// Colors arrays ~
+// ~~~~~~~~~~~~~~~
+
+// TEXT COLORS
+$color-text: (
+	basic:  #666,
+	hover:  #404040,
+	active: #1d1d1d,
+	focus:  #1d1d1d,
+	light:  #6f6f6f,
+	faded:  #c1c1c1
+);
+
+// ACCENT COLORS
+$color-first: (
+	basic:  #ff0000,
+	hover:  #d40000,
+	active: #7b0000,
+	focus:  0,
+	faded:  #ff4444
+);
+
+// BLOCK BACKGOUND COLORS
+$color-second: (
+	basic:  #ffffff,
+	hover:  0,
+	active: 0,
+	focus:  0,
+	faded:  0
+);
+
+// ELEMENTS BACKGROUND COLORS
+$color-third: (
+	basic:  #f8f8f8,
+	hover:  #efefef,
+	active: #dddddd,
+	focus:  #dddddd,
+	faded:  0
+);
+
+// BORDERS COLORS
+$color-border: (
+	basic:  #a9a9a9,
+	hover:  #aaaaaa,
+	active: #999999,
+	focus:  #999999,
+	faded:  #d3d3d3
+);
+
+// SITE BACKGROUND COLORS
+$color-background: (
+	basic:  #eee,
+	hover:  #ccc,
+	active: #aaa,
+	focus:  #aaa,
+	faded:  0
+);
+
+// EXTRA COLORS
+$color-other: (
+	basic:  #bababa,
+	hover:  0,
+	active: 0,
+	focus:  0,
+	faded:  0
+);
+
+
+
+// ~~~~~~~~~~~~~~~~~~
+// Colors variables ~
+// ~~~~~~~~~~~~~~~~~~
+
+// TEXT COLORS
+$color-text: $color-text;
+$color-text-basic:  map-get($color-text, basic);
+$color-text-hover:  map-get($color-text, hover);
+$color-text-active: map-get($color-text, active);
+$color-text-focus:  map-get($color-text, focus);
+$color-text-light:  map-get($color-text, light);
+$color-text-faded:  map-get($color-text, faded);
+
+// Цвет темы 1
+$color-first-basic:  map-get($color-first, basic);
+$color-first-hover:  map-get($color-first, hover);
+$color-first-active: map-get($color-first, active);
+$color-first-focus:  map-get($color-first, focus);
+$color-first-faded:  map-get($color-first, faded);
+
+// Цвет темы 2
+$color-second-basic:  map-get($color-second, basic);
+$color-second-hover:  map-get($color-second, hover);
+$color-second-active: map-get($color-second, active);
+$color-second-focus:  map-get($color-second, focus);
+$color-second-faded:  map-get($color-second, faded);
+
+// Цвет темы 3
+$color-third-basic:  map-get($color-third, basic);
+$color-third-hover:  map-get($color-third, hover);
+$color-third-active: map-get($color-third, active);
+$color-third-focus:  map-get($color-third, focus);
+$color-third-faded:  map-get($color-third, faded);
+
+// Цвет границ
+$color-border-basic:  map-get($color-border, basic);
+$color-border-hover:  map-get($color-border, hover);
+$color-border-active: map-get($color-border, active);
+$color-border-focus:  map-get($color-border, focus);
+$color-border-faded:  map-get($color-border, faded);
+
+// Цвет фона сайта
+$color-background-basic:  map-get($color-background, basic);
+$color-background-hover:  map-get($color-background, hover);
+$color-background-active: map-get($color-background, active);
+$color-background-focus:  map-get($color-background, focus);
+$color-background-faded:  map-get($color-background, faded);
+
+// Дополнительный цвет
+$color-other-basic:  map-get($color-other, basic);
+$color-other-hover:  map-get($color-other, hover);
+$color-other-active: map-get($color-other, active);
+$color-other-focus:  map-get($color-other, focus);
+$color-other-faded:  map-get($color-other, faded);
+
+
+
+// ~~~~~~~~~~~~~~~
+// Shadows       ~
+// ~~~~~~~~~~~~~~~
+
+$std-shadow: 2px 2px 5px #d7d7d7;

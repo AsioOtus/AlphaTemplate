@@ -1,0 +1,265 @@
+/* #################### *\
+|* THEME              # *| 
+\* #################### */
+
+
+
+// ~~~~~~~~~~~
+// Variables ~
+// ~~~~~~~~~~~
+
+$std-margin-lrg: 20px;
+$std-margin-mdm: 15px;
+$std-margin-sml: 10px;
+
+
+
+// ~~~~~~~~~~~~~~
+// Color scheme ~
+// ~~~~~~~~~~~~~~
+
+@import "layout/color-schemes/_light-red-scheme";
+
+
+
+/* ~~~~~~~~~~ *\
+|* Fonts    ~ *|
+\* ~~~~~~~~~~ */
+
+@font-face {
+	font-family: PragmaticeLightC;
+	src: url($file-path + "fonts/PragmaticaLightC.otf");
+}
+
+@font-face {
+	font-family: loop-search;
+	src: url($file-path + "fonts/loop-search.ttf");
+}
+
+$site-font-name: PragmaticeLightC;
+
+
+
+/* ~~~~~~~~~~~ *\
+|* Fullwidth ~ *|
+\* ~~~~~~~~~~~ */
+
+@media screen and (min-width: $content-width-min-ful) {
+	
+}
+
+
+
+/* ~~~~~~~~~~ *\
+|* Wide     ~ *|
+\* ~~~~~~~~~~ */
+
+@media screen and (min-width: $content-width-min-lrg) and (max-width: $content-width-max-lrg) {
+
+	/* STRUCTURE */
+
+	/* Distance between columns */
+	[class*="column"].content-table .row, .row.content-table {
+		& > [class*="column"] {
+			margin-left:   $std-margin-lrg;
+			margin-bottom: $std-margin-lrg;
+
+			&:first-of-type { margin-left: 0; }
+
+			&.first { margin-left: 0; }
+			&.nomargin { margin: 0;	}
+		}
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% + #{$std-margin-lrg}) - #{$std-margin-lrg});				
+			}
+		}
+		
+		&.last { margin-bottom: -$std-margin-lrg; }
+		
+		&.content-first    > [class*="column"] { margin-left: 0; }
+		&.content-nomargin > [class*="column"] { margin: 0; }
+	}
+	
+	[class*="column"].content-table-margined-1 .row, .row.content-table-margined-1 {
+		& > [class*="column"] {
+			margin-right:  $std-margin-lrg / 2;
+			margin-left:   $std-margin-lrg / 2;
+			margin-bottom: $std-margin-lrg;
+
+			&:first-of-type { margin-left:  $std-margin-lrg; }
+			&:last-of-type  { margin-right: $std-margin-lrg; }
+
+			&.first    { margin-left:  $std-margin-lrg; }
+			&.last     { margin-right: $std-margin-lrg; }
+			&.nomargin { margin: 0;	}
+		}
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% - #{$std-margin-lrg}) - #{$std-margin-lrg});
+			}
+		}
+
+		&.last { margin-bottom: -$std-margin-lrg; }
+		
+		&.content-first > [class*="column"]    { margin-left:  $std-margin-lrg; }
+		&.content-last  > [class*="column"]    { margin-right: $std-margin-lrg; }
+		&.content-nomargin > [class*="column"] { margin: 0; }
+	}
+	
+	[class*="column"].content-table-margined-2 .row, .row.content-table-margined-2 {
+		& > [class*="column"] {
+			margin-left:   $std-margin-lrg;
+			margin-bottom: $std-margin-lrg;
+
+ 			&:last-of-type  { margin-right: $std-margin-lrg; }
+
+			&.first { margin-left: $std-margin-lrg; }
+			&.last  { margin-right: $std-margin-lrg; }
+			&.nomargin { margin: 0;	}
+		}
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% - #{$std-margin-lrg}) - #{$std-margin-lrg});				
+			}
+		}
+		
+		&.last { margin-bottom: -$std-margin-lrg; }
+		
+		&.content-first > [class*="column"]    { margin-left: 0; }
+		&.content-last  > [class*="column"]    { margin-bottom: $std-margin-lrg; }
+		&.content-nomargin > [class*="column"] { margin: 0; }
+	}
+	
+	[class*="column"].content-table-margined-3 .row, .row.content-table-margined-3 {
+		& > [class*="column"] {
+			margin-left:   $std-margin-lrg;
+			margin-bottom: $std-margin-lrg;
+
+			&.first { margin-left: $std-margin-lrg; }
+			&.nomargin { margin: 0;	}
+		}
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% - #{$std-margin-lrg}) - #{$std-margin-lrg});				
+			}
+		}
+		
+		&.last { margin-bottom: -$std-margin-lrg; }
+		
+		&.content-first > [class*="column"]    { margin-left: 0; }
+		&.content-last  > [class*="column"]    { margin-bottom: $std-margin-lrg; }
+		&.content-nomargin > [class*="column"] { margin: 0; }
+	}
+}
+
+
+
+
+/* ~~~~~~~~~~ *\
+|* Medium   ~ *|
+\* ~~~~~~~~~~ */
+
+@media screen and (min-width: $content-width-min-mdm) and (max-width: $content-width-max-mdm){
+	
+	/* STRUCTURE */
+
+	[class*="column"].content-table .row, .row.content-table {
+		& > [class*="column"] {
+			margin-left:   $std-margin-mdm;
+			margin-bottom: $std-margin-mdm;
+
+			&:first-of-type { margin-left: 0; }
+
+			&.first { margin-left: 0; }
+			&.nomargin { margin: 0;	}
+			
+			@include transition(0.5s ease-out, margin-left, margin-bottom);
+		}
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% + #{$std-margin-mdm}) - #{$std-margin-mdm});				
+			}
+		}
+		
+		&.last { margin-bottom: -$std-margin-lrg; }
+		
+		&.content-first > [class*="column"]    { margin-left: 0; }
+		&.content-nomargin > [class*="column"] { margin: 0; }
+	}
+}
+
+
+
+/* ~~~~~~~~~~ *\
+|* Narrow   ~ *|
+\* ~~~~~~~~~~ */
+
+@media screen and (max-width: $content-width-max-sml){
+	
+	/* STRUCTURE */
+
+	[class*="column"].content-table .row, .row.content-table {
+		& > [class*="column"] {
+			margin-left:   $std-margin-mdm;
+			margin-bottom: $std-margin-lrg;
+
+			&:first-of-type { margin-left: 0; }
+
+			&.first { margin-left: 0; }
+			&.nomargin { margin: 0;	}
+			
+			@include transition(0.5s ease-out, margin-left, margin-bottom);
+		}
+
+		@for $i from 0 through 12 {
+			& > .column-#{$i} {
+				width: calc((#{$i} / 12) * (100% + #{$std-margin-lrg}) - #{$std-margin-lrg});				
+			}
+		}
+		
+		&.last { margin-bottom: -$std-margin-lrg; }
+		
+		&.content-first > [class*="column"]    { margin-left: 0; }
+		&.content-nomargin > [class*="column"] { margin: 0; }
+	}
+}
+
+
+
+/* ~~~~~~~~~~ *\
+|* Rules    ~ *|
+\* ~~~~~~~~~~ */
+
+body {
+	background-color: $color-background-basic;
+	font-family: $site-font-name;
+	font-size: 13px;
+	color: $color-text-basic;
+}
+
+a {
+	color: $color-text-basic;
+	text-decoration: none;
+	outline: none;
+}
+
+.background-color-none {
+	height: auto;
+	background-color: transparent !important;
+}
+
+.text-color-first {
+	color: $color-first-basic;
+}
+
+.container {
+	width: 100%;
+	height: 20px;
+	background-color: $color-second-basic;
+}
